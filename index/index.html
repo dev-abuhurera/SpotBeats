@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style2.css">
+    <link rel="stylesheet" href="/style/utility.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" class="invert" sizes="16x16" type="image/png"
+        href="https://open.spotifycdn.com/cdn/images/favicon16.1c487bff.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Butcherman&family=Martel+Sans:wght@600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>Spotify - Web Player: Music for everyone</title>
+</head>
+
+<body>
+    <div class="container flex bg-black">
+        
+        <div class="left">
+            <div class="close">
+                <img width="25px" class="invert close-img" src="/img/cross.svg" alt="cross">
+            </div>
+            <div class="home bg-gray rounded margin-1 padding-1">
+                <div class="logo flex align-item"><img class="invert" src="/img/logo.svg" alt="logo">Spotify</div>
+                <ul>
+                    <li><img class="invert" src="/img/home.svg" alt="home">Home</li>
+                    <li><img class="invert" src="/img/search.svg" alt="search">Search</li>
+                </ul>
+            </div>
+
+            <div class="library bg-gray rounded padding-1 margin-1">
+                <div class="heading flex align-item">
+                    <h2>Your Library</h2>
+                    <button><img class="invert justify-center" src="/img/plus.svg" alt="plus"></button>
+                </div>
+
+                <div class="songslist">
+                    <ul>
+                    </ul>
+                </div>
+
+                <div class="footer">
+                    <div><a href="https://www.spotify.com/pk-en/legal/">Legal</a></div>
+                    <div><a href="https://www.spotify.com/pk-en/safetyandprivacy/">Safety & Privacy Center</a></div>
+                    <div><a href="https://www.spotify.com/pk-en/legal/privacy-policy/">Privacy Policy</a></div>
+                    <div><a href="https://www.spotify.com/pk-en/legal/cookies-policy/">Cookies</a></div>
+                    <div><a href="https://www.spotify.com/pk-en/legal/privacy-policy/#s3">About Ads</a></div>
+                    <div><a href="https://www.spotify.com/pk-en/accessibility/">Accessibility</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right bg-gray rounded">
+            <div class="header">
+                <div class="nav">
+                    <img src="/img/hamburger.svg" class="invert hamburger" alt="hamburger" height="20" width="20">
+                    <img src="https://cdn.hugeicons.com/icons/arrow-left-01-stroke-sharp.svg" alt="back">
+                    <img src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" alt="forward">
+                </div>
+                <div class="buttons">
+                    <button>Sign Up</button>
+                    <button>Login</button>
+                </div>
+            </div>
+
+
+
+            <div class="spotifyPlaylists">
+                <h1>Spotify Playlists</h1>
+                <div class="card-container">
+                    <div class="card" data-folder="songsNew">
+
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02a7e251b543c77a6ed356dfbe" alt="album cover">
+                        <h2>Saiyaara (From "Saiyaara")</h2>
+                        <p>Tanishk Bagchi, Faheem Abdullah, Arslan Nizami, Irshad Kamil</p>
+
+                    </div>
+
+                    <div class="card" data-folder="cs">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e0292e9ea8063b79cfb7c88a0ef" alt="album cover">
+                        <h2>one sided luv</h2>
+                        <p>Jevin Gill, Shareh, Jokhay</p>
+
+                    </div>
+
+                    <div class="card" data-folder="songs3">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02bd7e1592d75a9ad8d211debd" alt="album cover">
+                        <h2>Sirra</h2>
+                        <p>Guru Randhawa, Kiran Bajwa, Rony Ajnali</p>
+
+                    </div>
+                    <div class="card" data-folder="songs4">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e021d0fb29c29b2b78eecd5fd6f" alt="album cover">
+                        <h2>Regardless</h2>
+                        <p>Asim Azhar</p>
+
+                    </div>
+                    <div class="card" data-folder="songs5">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27337d2750688d2e36d8bf72b61" alt="album cover">
+                        <h2>Jo To Na Mila</h2>
+                        <p>Asim Azhar, Kunal Verma</p>
+
+                    </div>
+                    <div class="card" data-folder="songs6">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e022eaf108332063121a5691b13" alt="album cover">
+                        <h2>BEMATLAB</h2>
+                        <p>Asim Azhar, Talha Anjum</p>
+
+                    </div>
+                    <div class="card" data-folder="songs7">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d0000b273123cdd6a61f9f07afb4eb11e" alt="album cover">
+                        <h2>STFU</h2>
+                        <p>AP Dhillon, Shinda Kahlon</p>
+
+                    </div>
+
+                    <div class="card" data-folder="songs8">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02bb25239324c4e16ae01fda36" alt="album cover">
+                        <h2>Making Memories</h2>
+                        <p>Karan Aujla</p>
+
+                    </div>
+                    <div class="card" data-folder="songs9">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="http://i.scdn.co/image/ab67616d00001e0285c5968be0d0d9c545241124" alt="album cover">
+                        <h2>Pal Pal</h2>
+                        <p>Afusic, AliSoomroMusic</p>
+
+                    </div>
+                    <div class="card" data-folder="songs10">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2738e1bd9f2ca754ace0396d72f" alt="album cover">
+                        <h2>Sicario</h2>
+                        <p>Shubh</p>
+
+                    </div>
+                    <div class="card" data-folder="songs11">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e028537cf974af2c408bdd8e1a6" alt="album cover">
+                        <h2>Afsoos</h2>
+                        <p>Anuv Jain, AP Dhillon</p>
+
+                    </div>
+                    <div class="card" data-folder="songs12">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e020a47bbe7141fdfe0eb2cdba7" alt="album cover">
+                        <h2>SAHIBA</h2>
+                        <p>Aditya Rikhari</p>
+
+                    </div>
+                    <div class="card" data-folder="songs13">
+                        <img class="play" src="/img/playButton.svg" alt="playbutton">
+                        <img src="https://i.scdn.co/image/ab67616d00001e0265ce8c712e4fb894bc88461b" alt="album cover">
+                        <h2>DESI KALAKAR</h2>
+                        <p>Yo Yo Honey Singer</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="playbar">
+
+                <div class="songinfo">
+                </div>
+                <div class="songbuttons invert">
+                    <img id="previous" width="23" src="https://cdn-icons-png.flaticon.com/512/8839/8839055.png"
+                        alt="previous">
+                    <img id="play" src="/img/playButton.svg" alt="play">
+                    <img id="next" width="17" src="https://cdn-icons-png.flaticon.com/512/6364/6364389.png" alt="next">
+                </div>
+
+                <div class="voltime">
+
+                    <div class="songtime"> </div>
+                    <div class="volume-control">
+                        <img src="/img/volume.png" alt="volume" class="volume-icon invert">
+                        <input type="range" min="0" max="100" value="50" class="volume-slider">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="seekbar">
+                <div class="circle"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="/script/script2.js"></script>
+</body>
+
+</html>
