@@ -26,10 +26,13 @@ You can customize SpotBeats with your own music collection!
    Place your `.mp3` file inside the album folder where you want it to appear.  
    Example:
 
+```plaintext
 songs/
-    ├── ChillBeats/
-    │ ├── my-song.mp3
-    │ ├── another-track.mp3
+├── ChillBeats/
+│   ├── my-song.mp3
+│   ├── another-track.mp3
+
+```
 
 3. **Update the JSON file**
    Add the song in the particular song folder and mention it's name in the `songs.json` file
