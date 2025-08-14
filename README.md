@@ -16,6 +16,28 @@ A modern, Spotify-inspired music player for smooth streaming, playlist control, 
 ---
 
 
+## 🎼 Adding Your Own Songs
+You can customize SpotBeats with your own music collection!  
+
+1. **Locate the folder**  
+   Open the `songs/` directory in your project. Inside, you’ll see multiple subfolders for different albums or playlists.  
+
+2. **Paste your MP3 file**  
+   Place your `.mp3` file inside the album folder where you want it to appear.  
+   Example:
+
+songs/
+    ├── ChillBeats/
+    │ ├── my-song.mp3
+    │ ├── another-track.mp3
+
+3. **Update the JSON file**
+   Add the song in the particular song folder and mention it's name in the `songs.json` file
+
+4. **Refresh the player** 
+
+   
+
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the Repository
