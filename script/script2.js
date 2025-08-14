@@ -172,7 +172,7 @@ async function main() {
     // Previous Button Implementation
     previous.addEventListener("click", () => {
         const currentTrackPath = currentSong.src;
-        const basePath = window.location.origin + "/songs/songsNew/";
+        const basePath = window.location.origin + `/songs/${currFolder}/`;
         const currentTrack = decodeURI(currentTrackPath.replace(basePath, ''));
 
         const currentIndex = songs.indexOf(currentTrack);
@@ -190,7 +190,7 @@ async function main() {
     // Next Button Implementation
     next.addEventListener("click", () => {
         const currentTrackPath = currentSong.src;
-        const basePath = window.location.origin + "/songs/songsNew/";
+        const basePath = window.location.origin + `/songs/${currFolder}/`;
         const currentTrack = decodeURI(currentTrackPath.replace(basePath, ''));
 
         const currentIndex = songs.indexOf(currentTrack);
