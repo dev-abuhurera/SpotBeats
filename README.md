@@ -28,9 +28,9 @@ You can customize SpotBeats with your own music collection!
 
 ```plaintext
 songs/
-├── ChillBeats/
-│   ├── my-song.mp3
-│   ├── another-track.mp3
+├── Albums/
+│   ├── new-song.mp3
+│   ├── Existing Song.mp3
 
 ```
 
