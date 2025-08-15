@@ -1,12 +1,11 @@
 let currentSong = new Audio();
-let songs;
-let currFolder;
+let songs = [];          // will hold array of song URLs
+let currFolder = "";     // holds current playlist key
 let isMuted = false;
-let lastVolume = 0.5; // Default volume (50%)
-let url;
+let lastVolume = 0.5;    // default volume (50%)
 let playlist;
 
-
+// Playlist mapping (key → JSON URL)
 playlist = {
     cs: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237121/songs_djc3ib.json",
     songs3: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237156/songs_ydhitv.json",
@@ -18,167 +17,138 @@ playlist = {
     songs9: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239004/songs_rfmdwx.json",
     songs10: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239241/songs_suk2pv.json",
     songsNew: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239794/songs_qzvbvp.json"
-}
+};
 
 function formatTime(seconds) {
-    if (isNaN(seconds) || seconds < 0) {
-        return "Invalid input";
-    }
-
+    if (isNaN(seconds) || seconds < 0) return "00:00";
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
-
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
-
-    return `${formattedMinutes}:${formattedSeconds}`;
+    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
+// Fetch songs from Cloudinary JSON
 async function getSongsFromCloud(folderKey) {
-    url = playlist[folderKey];
-
+    const url = playlist[folderKey];
     if (!url) {
-        console.error(`No playlist found for key: ${folderKey}`)
+        console.error(`No playlist found for key: ${folderKey}`);
         return;
     }
+    currFolder = folderKey;
 
-    let response = await fetch(url);
-    let songs = await response.json();
-    renderSongList(songs, folderKey);
-
+    try {
+        const response = await fetch(url);
+        songs = await response.json(); // songs now stores FULL URLs from JSON
+        renderSongList(songs);
+    } catch (error) {
+        console.error("Error fetching songs:", error);
+    }
 }
 
-function renderSongList(songArray, folderKey) {
-    let songUL = document.querySelector('.songlist ul')
+// Render song list UI
+function renderSongList(songArray) {
+    const songUL = document.querySelector('.songslist ul');
     songUL.innerHTML = "";
 
-
-    songArray.forEach(song => {
+    songArray.forEach(songURL => {
+        const songName = decodeURI(songURL.split('/').pop());
         songUL.innerHTML += `
-        <li>
-            <img class="invert" src="https://www.svgrepo.com/show/532708/music.svg">
-            <div class="info">
-                <div class="song Name">${song}</div>
-            </div>
-            <div class="playnow">
-                <span>Play Now</span>
-                <img class="in invert" src="/img/playButton.svg">
-            </div>
-        </li>`;
+            <li>
+                <img class="invert" src="https://www.svgrepo.com/show/532708/music.svg">
+                <div class="info">
+                    <div class="song-name">${songName}</div>
+                </div>
+                <div class="playnow">
+                    <span>Play Now</span>
+                    <img class="invert" src="/img/playButton.svg">
+                </div>
+            </li>`;
     });
 
-    document.querySelectorAll(".songslist li").forEach(e => {
-        e.addEventListener("click", () => {
-            let trackName = e.querySelector(".info").firstElementChild.innerHTML.trim();
-            playMusic(folderKey, trackName);
+    document.querySelectorAll(".songslist li").forEach((li, index) => {
+        li.addEventListener("click", () => {
+            playMusic(songs[index]);
         });
     });
 }
 
-
-
-function playMusic(folderKey, track, pause = false) {
-
-    currentSong.src = `https://res.cloudinary.com/dtjgvglij/video/upload/${folderKey}/${track}`;
-
+// Play a song from URL
+function playMusic(songURL, pause = false) {
+    currentSong.src = songURL;
     if (!pause) {
         currentSong.play();
-        play.src = "/img/pause.png"
+        play.src = "/img/pause.png";
     }
-    document.querySelector(".songinfo").innerHTML = decodeURI(track)
-    document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
-
-
+    document.querySelector(".songinfo").innerHTML = decodeURI(songURL.split('/').pop());
+    document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
     currentSong.volume = lastVolume;
     document.querySelector('.volume-slider').value = lastVolume * 100;
     updateVolumeIcon();
-
-
 }
 
-
-
-
-
-
+// Update volume icon
 function updateVolumeIcon() {
     const volumeIcon = document.querySelector('.volume-icon');
     if (isMuted || currentSong.volume === 0) {
         volumeIcon.src = '/img/mute.png';
     } else if (currentSong.volume < 0.5) {
         volumeIcon.src = '/img/volume-decrease.png';
-    } else if (currentSong.volume > 0.5) {
-        volumeIcon.src = '/img/volume-decrease.png';
-    }
-    else {
+    } else {
         volumeIcon.src = '/img/volume.png';
     }
 }
 
-
-
-
+// Main app
 async function main() {
-    // Get the list of all the songs
-    await getSongs("cs", "songs.json");
-    playMusic(songs[0], true);
+    await getSongsFromCloud("cs");
+    if (songs.length > 0) playMusic(songs[0], true);
 
-
-    // Show all the songs in the playlist
-
+    // Play/Pause button
     play.addEventListener("click", () => {
         if (currentSong.paused) {
-            currentSong.play()
-            play.src = "/img/pause.png"
+            currentSong.play();
+            play.src = "/img/pause.png";
+        } else {
+            currentSong.pause();
+            play.src = "/img/playButton.svg";
         }
-        else {
-            currentSong.pause()
-            play.src = "/img/playButton.svg"
-        }
-    })
+    });
 
-
+    // Update time display
     currentSong.addEventListener("timeupdate", () => {
-        // console.log(currentSong.currentTime, currentSong.duration);
-        document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)
-            }`
-        document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
-    })
+        document.querySelector(".songtime").innerHTML =
+            `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`;
+        document.querySelector(".circle").style.left =
+            (currentSong.currentTime / currentSong.duration) * 100 + "%";
+    });
 
-    // Seek bar functionality
+    // Seek bar
     document.querySelector(".seekbar").addEventListener("click", (e) => {
-        let percent = document.querySelector(".circle").style.left = ((e.offsetX / e.target.getBoundingClientRect().width) * 100);
+        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         document.querySelector(".circle").style.left = percent + "%";
-        currentSong.currentTime = ((currentSong.duration) * percent) / 100;
-    })
+        currentSong.currentTime = (currentSong.duration * percent) / 100;
+    });
 
-    // Volume control functionality
+    // Volume slider
     const volumeSlider = document.querySelector('.volume-slider');
     const volumeIcon = document.querySelector('.volume-icon');
-
-    // Set initial volume
     currentSong.volume = lastVolume;
     volumeSlider.value = lastVolume * 100;
     updateVolumeIcon();
 
-    // Volume slider event
     volumeSlider.addEventListener('input', function () {
-        const volume = this.value / 100;
-        currentSong.volume = volume;
-        lastVolume = volume;
+        currentSong.volume = this.value / 100;
+        lastVolume = currentSong.volume;
         isMuted = false;
         updateVolumeIcon();
     });
 
-    // Volume icon click (mute/unmute)
+    // Mute/Unmute
     volumeIcon.addEventListener('click', function () {
         if (isMuted) {
-            // Unmute
             currentSong.volume = lastVolume;
             volumeSlider.value = lastVolume * 100;
             isMuted = false;
         } else {
-            // Mute
             lastVolume = currentSong.volume;
             currentSong.volume = 0;
             volumeSlider.value = 0;
@@ -187,70 +157,47 @@ async function main() {
         updateVolumeIcon();
     });
 
-    // Show the menu on hamburger click
+    // Menu toggle
     document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".left").style.left = "0";
         document.querySelector(".hamburger").style.display = "none";
         document.querySelector(".close-img").style.display = "block";
     });
-
-    // Hide the menu on close icon click
     document.querySelector(".close-img").addEventListener("click", () => {
         document.querySelector(".left").style.left = "-125%";
         document.querySelector(".hamburger").style.display = "block";
         document.querySelector(".close-img").style.display = "none";
     });
 
-    // Previous Button Implementation
+    // Previous Button
     previous.addEventListener("click", () => {
-        const currentTrackPath = currentSong.src;
-        const basePath = window.location.origin + `/songs/${currFolder}/`;
-        const currentTrack = decodeURI(currentTrackPath.replace(basePath, ''));
-
-        const currentIndex = songs.indexOf(currentTrack);
-        // console.log("Previous clicked - Current index:", currentIndex);
-
+        const currentIndex = songs.findIndex(url => decodeURI(url) === decodeURI(currentSong.src));
         if (currentIndex === -1) {
             if (songs.length > 0) playMusic(songs[0]);
             return;
         }
-
         const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
         playMusic(songs[prevIndex]);
     });
 
-    // Next Button Implementation
+    // Next Button
     next.addEventListener("click", () => {
-        const currentTrackPath = currentSong.src;
-        const basePath = window.location.origin + `/songs/${currFolder}/`;
-        const currentTrack = decodeURI(currentTrackPath.replace(basePath, ''));
-
-        const currentIndex = songs.indexOf(currentTrack);
-        // console.log("Next clicked - Current index:", currentIndex);
-
+        const currentIndex = songs.findIndex(url => decodeURI(url) === decodeURI(currentSong.src));
         if (currentIndex === -1) {
             if (songs.length > 0) playMusic(songs[0]);
             return;
         }
-
         const nextIndex = (currentIndex + 1) % songs.length;
         playMusic(songs[nextIndex]);
     });
 
-    // load playlists whenever the card is clicked
-
-    let fun = Array.from(document.getElementsByClassName("card")).forEach(e => {
-        e.addEventListener("click", async item => {
-            songs = await getSongs(`${item.currentTarget.dataset.folder}`, "songs.json");
-            if (songs.length > 0) {
-                playMusic(songs[0]); // Play the first song in the playlist
-            }
-        })
-    })
+    // Playlist card clicks
+    document.querySelectorAll(".card").forEach(card => {
+        card.addEventListener("click", () => {
+            const folderKey = card.dataset.folder;
+            getSongsFromCloud(folderKey);
+        });
+    });
 }
 
 main();
-
-function seperateTitle(song) {
-    return song;
-}
