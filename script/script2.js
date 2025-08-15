@@ -77,8 +77,10 @@ function renderSongList(songArray, folderKey) {
 
 
 
-const playMusic = (track, pause = false) => {
-    currentSong.src = `/songs/${currFolder}/` + track;
+function playMusic(folderKey, track, pause = false) {
+
+    currentSong.src = `https://res.cloudinary.com/dtjgvglij/video/upload/${folderKey}/${track}`;
+
     if (!pause) {
         currentSong.play();
         play.src = "/img/pause.png"
@@ -93,6 +95,8 @@ const playMusic = (track, pause = false) => {
 
 
 }
+
+
 
 
 
