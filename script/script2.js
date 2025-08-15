@@ -3,8 +3,8 @@ let songs;
 let currFolder;
 let isMuted = false;
 let lastVolume = 0.5; // Default volume (50%)
-const url;
-const playlist
+let url;
+let playlist;
 
 
 playlist = {
@@ -74,6 +74,8 @@ function renderSongList(songArray, folderKey) {
         });
     });
 }
+
+
 
 const playMusic = (track, pause = false) => {
     currentSong.src = `/songs/${currFolder}/` + track;
