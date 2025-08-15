@@ -3,6 +3,22 @@ let songs;
 let currFolder;
 let isMuted = false;
 let lastVolume = 0.5; // Default volume (50%)
+const url;
+const playlist
+
+
+playlist = {
+    cs: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237121/songs_djc3ib.json",
+    songs3: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237156/songs_ydhitv.json",
+    songs4: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237387/songs_aatr1x.json",
+    songs5: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237661/songs_czx5k2.json",
+    songs6: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755238335/songs_kknxy1.json",
+    songs7: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755238612/songs_uj5n0h.json",
+    songs8: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755238804/songs_z88jap.json",
+    songs9: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239004/songs_rfmdwx.json",
+    songs10: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239241/songs_suk2pv.json",
+    songsNew: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239794/songs_qzvbvp.json"
+}
 
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) {
@@ -18,38 +34,45 @@ function formatTime(seconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-async function getSongs(folder) {
-    currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/songs/${currFolder}/songs.json`);
-    let response = await a.json();
-    songs = [];
-    for (let index = 0; index < response.length; index++) {
-        const element = response[index];
-        songs.push(element);
+async function getSongsFromCloud(folderKey) {
+    url = playlist[folderKey];
+
+    if (!url) {
+        console.error(`No playlist found for key: ${folderKey}`)
+        return;
     }
 
-    let songUL = document.querySelector('.songslist').getElementsByTagName('ul')[0];
+    let response = await fetch(url);
+    let songs = await response.json();
+    renderSongList(songs, folderKey);
+
+}
+
+function renderSongList(songArray, folderKey) {
+    let songUL = document.querySelector('.songlist ul')
     songUL.innerHTML = "";
-    for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li>
+
+
+    songArray.forEach(song => {
+        songUL.innerHTML += `
+        <li>
             <img class="invert" src="https://www.svgrepo.com/show/532708/music.svg">
             <div class="info">
-                <div class="song Name">${seperateTitle(song)}</div>
+                <div class="song Name">${song}</div>
             </div>
             <div class="playnow">
                 <span>Play Now</span>
                 <img class="in invert" src="/img/playButton.svg">
             </div>
         </li>`;
-    }
-
-    Array.from(document.querySelector(".songslist").getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", element => {
-            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
-        })
     });
 
-    return songs; // Add this line to return the songs array
+    document.querySelectorAll(".songslist li").forEach(e => {
+        e.addEventListener("click", () => {
+            let trackName = e.querySelector(".info").firstElementChild.innerHTML.trim();
+            playMusic(folderKey, trackName);
+        });
+    });
 }
 
 const playMusic = (track, pause = false) => {
@@ -68,6 +91,9 @@ const playMusic = (track, pause = false) => {
 
 
 }
+
+
+
 
 function updateVolumeIcon() {
     const volumeIcon = document.querySelector('.volume-icon');
