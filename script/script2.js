@@ -3,10 +3,9 @@ let songs = [];          // will hold array of song URLs
 let currFolder = "";     // holds current playlist key
 let isMuted = false;
 let lastVolume = 0.5;    // default volume (50%)
-let playlist;
 
 // Playlist mapping (key → JSON URL)
-playlist = {
+const playlist = {
     cs: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237121/songs_djc3ib.json",
     songs3: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237156/songs_ydhitv.json",
     songs4: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755237387/songs_aatr1x.json",
@@ -16,6 +15,8 @@ playlist = {
     songs8: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755238804/songs_z88jap.json",
     songs9: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239004/songs_rfmdwx.json",
     songs10: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239241/songs_suk2pv.json",
+    songs11: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239393/songs_jjz3m7.json",
+    songs12 : "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239588/songs_jwkjqy.json",
     songsNew: "https://res.cloudinary.com/dtjgvglij/raw/upload/v1755239794/songs_qzvbvp.json"
 };
 
@@ -37,7 +38,7 @@ async function getSongsFromCloud(folderKey) {
 
     try {
         const response = await fetch(url);
-        songs = await response.json(); // songs now stores FULL URLs from JSON
+        songs = await response.json(); // should be an array of FULL mp3 URLs
         renderSongList(songs);
     } catch (error) {
         console.error("Error fetching songs:", error);
@@ -73,13 +74,20 @@ function renderSongList(songArray) {
 
 // Play a song from URL
 function playMusic(songURL, pause = false) {
+    if (!songURL) return;
+
     currentSong.src = songURL;
+
     if (!pause) {
         currentSong.play();
         play.src = "/img/pause.png";
+    } else {
+        play.src = "/img/playButton.svg";
     }
+
     document.querySelector(".songinfo").innerHTML = decodeURI(songURL.split('/').pop());
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
+
     currentSong.volume = lastVolume;
     document.querySelector('.volume-slider').value = lastVolume * 100;
     updateVolumeIcon();
