@@ -317,7 +317,12 @@ function renderSongList(songArray) {
     songArray.forEach(songURL => {
         const urlParts = songURL.split('/');
         const filenameWithId = urlParts[urlParts.length - 1];
-        const songName = filenameWithId.replace('.mp3', '').replace(/_/g, ' ');
+        
+
+        const songName = filenameWithId
+        .replace('.mp3', '')
+        .replace(/_/g, ' ')
+        .replace(/\s+[a-z0-9]{6,}$/i, ''); // Remove trailing Cloudinary ID
         
         songUL.innerHTML += `
             <li>
@@ -354,7 +359,10 @@ function playMusic(songURL, pause = false) {
 
     const urlParts = songURL.split('/');
     const filenameWithId = urlParts[urlParts.length - 1];
-    const songName = filenameWithId.replace('.mp3', '').replace(/_/g, ' ');
+    const songName = filenameWithId
+    .replace('.mp3', '')
+    .replace(/_/g, ' ')
+    .replace(/\s+[a-z0-9]{6,}$/i, '');
     
     document.querySelector(".songinfo").innerHTML = songName;
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
