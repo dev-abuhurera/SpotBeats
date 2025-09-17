@@ -458,7 +458,17 @@ async function main() {
 
     // Previous Button
     previous.addEventListener("click", () => {
+<<<<<<< HEAD
         const currentIndex = songs.findIndex(url => url === currentSong.src);
+=======
+        const currentTrackPath = currentSong.src;
+        const basePath = window.location.origin + `/songs/${currFolder}/`;
+        const currentTrack = decodeURI(currentTrackPath.replace(basePath, ''));
+
+        const currentIndex = songs.indexOf(currentTrack);
+        // console.log("Previous clicked - Current index:", currentIndex);
+
+>>>>>>> ff4077a6bdbc66218b8f5f1ead60fae196981da3
         if (currentIndex === -1) {
             if (songs.length > 0) playMusic(songs[0]);
             return;
@@ -469,7 +479,17 @@ async function main() {
 
     // Next Button
     next.addEventListener("click", () => {
+<<<<<<< HEAD
         const currentIndex = songs.findIndex(url => url === currentSong.src);
+=======
+        const currentTrackPath = currentSong.src;
+        const basePath = window.location.origin + `/songs/${currFolder}/`;
+        const currentTrack = decodeURI(currentTrackPath.replace(basePath, ''));
+
+        const currentIndex = songs.indexOf(currentTrack);
+        // console.log("Next clicked - Current index:", currentIndex);
+
+>>>>>>> ff4077a6bdbc66218b8f5f1ead60fae196981da3
         if (currentIndex === -1) {
             if (songs.length > 0) playMusic(songs[0]);
             return;
@@ -479,4 +499,12 @@ async function main() {
     });
 }
 
+<<<<<<< HEAD
 main();
+=======
+main();
+
+function seperateTitle(song) {
+    return song;
+}
+>>>>>>> ff4077a6bdbc66218b8f5f1ead60fae196981da3
