@@ -1,0 +1,83 @@
+{
+  "playlists": [
+    
+    {
+      "folder": "songsNew",
+      "image": "https://i.scdn.co/image/ab67616d00001e02a7e251b543c77a6ed356dfbe",
+      "title": "Saiyaara (From \"Saiyaara\")",
+      "artist": "Tanishk Bagchi, Faheem Abdullah, Arslan Nizami, Irshad Kamil"
+    },
+    {
+      "folder": "cs",
+      "image": "https://i.scdn.co/image/ab67616d00001e0292e9ea8063b79cfb7c88a0ef",
+      "title": "one sided luv",
+      "artist": "Jevin Gill, Shareh, Jokhay"
+    },
+    {
+      "folder": "songs3",
+      "image": "https://i.scdn.co/image/ab67616d00001e02bd7e1592d75a9ad8d211debd",
+      "title": "Sirra",
+      "artist": "Guru Randhawa, Kiran Bajwa, Rony Ajnali"
+    },
+    {
+      "folder": "songs4",
+      "image": "https://i.scdn.co/image/ab67616d00001e021d0fb29c29b2b78eecd5fd6f",
+      "title": "Regardless",
+      "artist": "Asim Azhar"
+    },
+    {
+      "folder": "songs5",
+      "image": "https://i.scdn.co/image/ab67616d0000b27337d2750688d2e36d8bf72b61",
+      "title": "Jo To Na Mila",
+      "artist": "Asim Azhar, Kunal Verma"
+    },
+    {
+      "folder": "songs6",
+      "image": "https://i.scdn.co/image/ab67616d00001e022eaf108332063121a5691b13",
+      "title": "BEMATLAB",
+      "artist": "Asim Azhar, Talha Anjum"
+    },
+    {
+      "folder": "songs7",
+      "image": "https://i.scdn.co/image/ab67616d0000b273123cdd6a61f9f07afb4eb11e",
+      "title": "STFU",
+      "artist": "AP Dhillon, Shinda Kahlon"
+    },
+    {
+      "folder": "songs8",
+      "image": "https://i.scdn.co/image/ab67616d00001e02bb25239324c4e16ae01fda36",
+      "title": "Making Memories",
+      "artist": "Karan Aujla"
+    },
+    {
+      "folder": "songs9",
+      "image": "http://i.scdn.co/image/ab67616d00001e0285c5968be0d0d9c545241124",
+      "title": "Pal Pal",
+      "artist": "Afusic, AliSoomroMusic"
+    },
+    {
+      "folder": "songs10",
+      "image": "https://i.scdn.co/image/ab67616d0000b2738e1bd9f2ca754ace0396d72f",
+      "title": "Sicario",
+      "artist": "Shubh"
+    },
+    {
+      "folder": "songs11",
+      "image": "https://i.scdn.co/image/ab67616d00001e028537cf974af2c408bdd8e1a6",
+      "title": "Afsoos",
+      "artist": "Anuv Jain, AP Dhillon"
+    },
+    {
+      "folder": "songs12",
+      "image": "https://i.scdn.co/image/ab67616d00001e020a47bbe7141fdfe0eb2cdba7",
+      "title": "SAHIBA",
+      "artist": "Aditya Rikhari"
+    },
+    {
+      "folder": "songs13",
+      "image": "https://i.scdn.co/image/ab67616d00001e0265ce8c712e4fb894bc88461b",
+      "title": "DESI KALAKAR",
+      "artist": "Yo Yo Honey Singer"
+    }
+  ]
+}
