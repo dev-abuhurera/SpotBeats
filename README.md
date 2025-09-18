@@ -65,7 +65,8 @@ Option 2: Start a local server:
 ###📦 Deployment
 
 SpotBeats can be deployed easily using Netlify, Vercel, or any static hosting provider.
-Example for Netlify:
+For vercel:
+https://spotbeats.vercel.app/
 
 netlify deploy
 
