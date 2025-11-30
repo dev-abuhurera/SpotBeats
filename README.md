@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🎵 SpotBeats
 
 A modern, Spotify-inspired music player for smooth streaming, playlist control, and immersive listening — built with **HTML**, **CSS**, and **JavaScript**.
@@ -69,6 +69,7 @@ SpotBeats can be deployed easily using Netlify, Vercel, or any static hosting pr
 Example for Netlify:
 
 netlify deploy
+
 
 =======
 # 🎵 SpotBeats
@@ -191,5 +192,3 @@ Environment Variables (if needed):
 
 
 
-
->>>>>>> 27f84bd2ccb66a0bdbb046c3f73847f4660e1a13
