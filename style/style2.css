@@ -765,7 +765,7 @@ body {
     }
 
     .seekbar {
-        top: 0;
+        top: -3px;
         left: 0;
         right: 0;
     }
