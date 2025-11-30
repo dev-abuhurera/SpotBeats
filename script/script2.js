@@ -57,6 +57,11 @@ async function getSongsFromCloud(folderKey) {
     
     console.log("Songs for", folderKey, ":", songs);
     renderSongList(songs);
+
+    if (songs.length > 0) {
+        playMusic(songs[0]); // Automatically plays the first song
+    }
+    
 }
 
 // Function to create a single music card with lazy loading
