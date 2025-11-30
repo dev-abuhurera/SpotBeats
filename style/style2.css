@@ -740,7 +740,7 @@ body {
 
     .songtime {
         order: 3;
-        text-align: center;
+        text-align: end;
         width: 100%;
     }
 
