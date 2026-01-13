@@ -8,6 +8,7 @@ A modern, Spotify-inspired music player for smooth streaming, playlist control, 
 ---
 
 ## ✨ Features
+
 - 🎧 **Play MP3 songs** directly in your browser  
 - 📂 Songs neatly organized into categories  
 - 🔍 **Search & filter** functionality for quick access  
@@ -18,6 +19,7 @@ A modern, Spotify-inspired music player for smooth streaming, playlist control, 
 
 
 ## 🎼 Adding Your Own Songs
+
 You can customize SpotBeats with your own music collection!  
 
 1. **Locate the folder**  
@@ -45,30 +47,26 @@ songs/
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the Repository
+
 ```bash
 git clone https://github.com/dev-abuhurera/SpotBeats.git
 cd SpotBeats
 ```
 
 ###2️⃣ Install Git LFS (Required for MP3 files)
+
 ```bash
 git lfs install
 git lfs pull
 ```
 
 ###3️⃣ Run Locally
+
 ```bash
 Option 1: Open index.html in your browser
 
 Option 2: Start a local server:
 ```
-
-###📦 Deployment
-
-SpotBeats can be deployed easily using Netlify, Vercel, or any static hosting provider.
-Example for Netlify:
-
-netlify deploy
 
 
 
